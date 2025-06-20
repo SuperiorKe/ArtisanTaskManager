@@ -1,4 +1,3 @@
-This project is a web-based task manager that allows users to:  Sign up and log in using email and password authentication. Add, view, complete, and delete personal tasks.
 # Artisan Task Manager
 
 Artisan Task Manager is a web-based application that allows users to manage their personal tasks efficiently. It features user authentication, real-time task management, and a modern, responsive interface. The app is built using HTML, CSS, and JavaScript, and leverages Firebase for authentication, data storage, and hosting.
