@@ -3,62 +3,733 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artisan Task Manager</title>
-    <link rel="stylesheet" href="style.css">
+    <title>SuperiaTech - AI Solutions for African Artisans</title>
+    <meta name="description" content="Helping African artisans automate & scale their business with simple AI-powered tools. Save time, look professional, grow sustainably.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #fafafa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3a2e 0%, #2d5a3d 100%);
+            color: white;
+            padding: 80px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.04)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #d4a574;
+            font-weight: 500;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: #e8f4f0;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #d4a574 0%, #b8954a 100%);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 25px rgba(212, 165, 116, 0.3);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(212, 165, 116, 0.4);
+        }
+
+        /* Problem Section */
+        .problem-section {
+            padding: 100px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 60px;
+            font-weight: 700;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .problem-item {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #d4a574;
+            transition: transform 0.3s ease;
+        }
+
+        .problem-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .problem-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #1e3a2e;
+        }
+
+        .solution-statement {
+            font-size: 1.3rem;
+            color: #1e3a2e;
+            font-weight: 600;
+            margin-top: 40px;
+        }
+
+        /* Solution Section */
+        .solution-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid #1e3a2e;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1e3a2e, #2d5a3d);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .feature-desc {
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-top: 80px;
+        }
+
+        .step {
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #d4a574, #b8954a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin: 0 auto 30px;
+            box-shadow: 0 8px 25px rgba(212, 165, 116, 0.3);
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .step-desc {
+            color: #6c757d;
+        }
+
+        /* Why SuperiaTech */
+        .why-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1e3a2e 0%, #2d5a3d 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .benefit {
+            padding: 30px 20px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #d4a574;
+        }
+
+        .benefit-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .testimonial {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            border-left: 5px solid #d4a574;
+        }
+
+        .testimonial-quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #1e3a2e;
+        }
+
+        .testimonial-role {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #d4a574 0%, #b8954a 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .cta-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-secondary {
+            background: white;
+            color: #b8954a;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #d4a574;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #d4a574;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #34495e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #d4a574;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+
+            .problem-grid,
+            .features-grid,
+            .steps-container,
+            .benefits-grid,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            header {
+                padding: 60px 0 80px;
+            }
+
+            .problem-section,
+            .solution-section,
+            .how-it-works,
+            .why-section,
+            .testimonials,
+            .cta-section {
+                padding: 60px 0;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    </style>
 </head>
 <body>
-    <!-- Auth Section -->
-    <div id="auth-container">
-        <div class="auth-form">
-            <h1>Artisan Task Manager</h1>
-            <div id="login-form">
-                <h2>Login</h2>
-                <input type="email" id="login-email" placeholder="Email">
-                <input type="password" id="login-password" placeholder="Password">
-                <button onclick="login()">Login</button>
-                <p>Don't have an account? <a href="#" onclick="showSignup()">Sign up</a></p>
+    <!-- Header/Hero Section -->
+    <header>
+        <div class="container">
+            <div class="hero-content">
+                <div class="tagline">AI Solutions for African Artisans</div>
+                <h1 class="hero-title">Automate tasks. Save time. Grow your business.</h1>
+                <p class="hero-subtitle">Simple AI-powered tools designed specifically for skilled African artisans and small business owners.</p>
+                <a href="login.html" class="cta-primary">Join The Early Access</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">Running a small business shouldn't be this hard.</h2>
+            
+            <div class="problem-grid">
+                <div class="problem-item">
+                    <div class="problem-icon">📝</div>
+                    <h3>Creating quotations</h3>
+                    <p>Hours spent manually writing quotes and estimates for every client</p>
+                </div>
+                <div class="problem-item">
+                    <div class="problem-icon">👥</div>
+                    <h3>Managing customers</h3>
+                    <p>Lost contacts, forgotten follow-ups, and disorganized client records</p>
+                </div>
+                <div class="problem-item">
+                    <div class="problem-icon">💰</div>
+                    <h3>Following up on payments</h3>
+                    <p>Chasing down invoices and tracking who owes what</p>
+                </div>
+                <div class="problem-item">
+                    <div class="problem-icon">📋</div>
+                    <h3>Organizing orders</h3>
+                    <p>Juggling multiple projects without proper tracking systems</p>
+                </div>
             </div>
             
-            <div id="signup-form" style="display: none;">
-                <h2>Sign Up</h2>
-                <input type="email" id="signup-email" placeholder="Email">
-                <input type="password" id="signup-password" placeholder="Password">
-                <button onclick="signup()">Sign Up</button>
-                <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+            <div class="solution-statement">SuperiaTech simplifies it all.</div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution-section">
+        <div class="container">
+            <h2 class="section-title">Everything you need to run your business professionally</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Generate professional quotations in minutes</h3>
+                    <p class="feature-desc">AI creates polished quotes with your branding, terms, and pricing automatically.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Track orders & projects effortlessly</h3>
+                    <p class="feature-desc">Keep all your active jobs organized with progress tracking and deadline reminders.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👤</div>
+                    <h3 class="feature-title">Manage client records automatically</h3>
+                    <p class="feature-desc">Store customer information, history, and preferences without manual data entry.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3 class="feature-title">Automate reminders & invoices</h3>
+                    <p class="feature-desc">Never miss a follow-up or payment with smart automated workflows.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3 class="feature-title">Look professional without hiring extra staff</h3>
+                    <p class="feature-desc">Present a polished business image with branded documents and communications.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">All powered by AI. No learning curve.</h3>
+                    <p class="feature-desc">Advanced technology working behind the scenes with simple, intuitive interfaces.</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Main App Section -->
-    <div id="app-container" style="display: none;">
-        <header>
-            <h1>My Tasks</h1>
-            <div class="user-info">
-                <span id="user-email"></span>
-                <button onclick="logout()" class="logout-btn">Logout</button>
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How SuperiaTech Works</h2>
+            
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Enter your job details</h3>
+                    <p class="step-desc">Simply input basic information about your project or service</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">AI generates your documents & records</h3>
+                    <p class="step-desc">Our AI creates professional quotes, invoices, and organizes your data</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Share with your client instantly</h3>
+                    <p class="step-desc">Send polished documents directly to clients via WhatsApp or email</p>
+                </div>
             </div>
-        </header>
-
-        <div class="task-input">
-            <input type="text" id="new-task" placeholder="Add a new task...">
-            <button onclick="addTask()">Add Task</button>
         </div>
+    </section>
 
-        <div id="tasks-container">
-            <!-- Tasks will be loaded here -->
+    <!-- Why SuperiaTech -->
+    <section class="why-section">
+        <div class="container">
+            <h2 class="section-title">Why SuperiaTech?</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit">
+                    <div class="benefit-icon">🌍</div>
+                    <h3 class="benefit-title">Built for African artisans</h3>
+                    <p>Designed specifically for the needs of African small businesses</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">🎯</div>
+                    <h3 class="benefit-title">Simple & reliable</h3>
+                    <p>No complicated features - just what you need to grow</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">🔧</div>
+                    <h3 class="benefit-title">No technical skills needed</h3>
+                    <p>If you can use WhatsApp, you can use SuperiaTech</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">⏰</div>
+                    <h3 class="benefit-title">Saves hours every week</h3>
+                    <p>Spend time on your craft, not on paperwork</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">📈</div>
+                    <h3 class="benefit-title">Professional appearance</h3>
+                    <p>Present your business with confidence and credibility</p>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div id="loading" style="display: none;">
-        <p>Loading...</p>
-    </div>
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Early Users Say</h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <div class="testimonial-quote">"SuperiaTech has saved me 5 hours every week on paperwork. Now I can focus on welding and taking on more clients."</div>
+                    <div class="testimonial-author">Samuel Kiprotich</div>
+                    <div class="testimonial-role">Master Welder, Nakuru</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-quote">"My quotes look so professional now. Clients take me more seriously and I'm winning more contracts."</div>
+                    <div class="testimonial-author">Grace Wanjiku</div>
+                    <div class="testimonial-role">Tailor & Fashion Designer, Nairobi</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-quote">"Finally, a tool that actually understands how small businesses work in Kenya. Simple but powerful."</div>
+                    <div class="testimonial-author">David Ochieng</div>
+                    <div class="testimonial-role">Carpenter, Kisumu</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
-    
-    <script src="config.js"></script>
-    <script src="app.js"></script>
+    <!-- Final CTA Section -->
+    <section class="cta-section" id="early-access">
+        <div class="container">
+            <h2 class="cta-title">Be among the first to transform your business</h2>
+            <p class="cta-subtitle">Join the Early Access Program Today</p>
+            <a href="login.html" class="cta-secondary">Join Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SuperiaTech</h3>
+                    <p>AI Solutions for African Artisans</p>
+                    <p>Making business operations simple and professional for skilled artisans across Africa.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Get In Touch</h3>
+                    <p>Email: superiorwech@gmail.com</p>
+                    <p>Based in Nairobi, Kenya</p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/Superior_Kenn" target="_blank" aria-label="=_blank" aria-label="Twitter">𝕏</a>
+                        <a href="https://www.linkedin.com/in/kenn-macharia" target="_blank" aria-label="LinkedIn">in</a>
+                        <a href="+254715035359" aria-label="WhatsApp" target="_blank" aria-label="WhatsApp">📱</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SuperiaTech. All rights reserved. Built for you. Simple. Powerful. No tech headaches.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.feature-card, .step, .benefit, .testimonial').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
